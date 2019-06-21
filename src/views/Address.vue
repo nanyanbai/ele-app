@@ -4,7 +4,7 @@
          <div class="city_search">
             <div class="search">
                 <span class="city" @click="$router.push('/city')">
-                    {{city}}
+                    {{city}} 
                     <i class="fa fa-angle-down"></i>
                 </span>
                 <i class="fa fa-search"></i>
@@ -27,6 +27,12 @@
         },
         components: {
             Header
+        },
+        beforeRouteEnter(to, from, next) {
+            // console.log(to.params.city + "test");
+            next(vm => {
+            vm.city = to.params.city;
+            });
         }
     }
 </script>
@@ -48,7 +54,7 @@
 .search {
   background-color: #eee;
   height: 40px;
-  border-radius: 10px;
+  border-radius: 4px;
   box-sizing: border-box;
   line-height: 40px;
 }
@@ -57,6 +63,9 @@
 }
 .city i {
   margin-right: 10px;
+}
+.search .fa-search{
+    color: #ccc;
 }
 .search input {
   margin-left: 5px;

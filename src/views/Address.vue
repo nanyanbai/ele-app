@@ -10,13 +10,14 @@
                 <i class="fa fa-search"></i>
                 <input type="text" v-model="search_val" placeholder="小区/写字楼/学校等">
             </div>
-            <!-- <Location @click="selectAddress" :address="address"/> -->
+            <Location  :address="address"/> 
         </div>
     </div>
 </template>
 
 <script>
     import  Header from "../components/Header"
+    import  Location  from '../components/Location'
     export  default {
         name: "Address", 
         data() {
@@ -25,8 +26,14 @@
                 search_val: "",
             }
         },
+        computed: {
+            address() {
+                return this.$store.getters.location.formattedAddress;
+            }
+        },
         components: {
-            Header
+            Header,
+            Location
         },
         beforeRouteEnter(to, from, next) {
             // console.log(to.params.city + "test");
